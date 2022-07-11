@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" style="width: 100%">
+    <tr >
+        <td>Nhap vao chieu rong</td>
+        <td>
+            <input id="chieuRong" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td>Nhap vao chieu dai</td>
+        <td>
+            <input id="chieuDai" TYPE="text">
+        </td>
+    </tr>
+    <tr >
+        <td>dien tich :</td>
+        <td>
+            <h3 id="dienTich"></h3>
+        </td>
+    </tr>
+    <tr >
+        <td>chu vi:</td>
+        <td>
+            <h3 id="chuVi"></h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center">
+            <canvas id="myCanvas" style="border: 1px solid green" width="500px"  height="300px" ></canvas>
+        </td>
+    </tr>
+    <tr>
+        <td>Nhap vao toa do x</td>
+        <td>
+            <input id="toaDoX" TYPE="text">
+        </td>
+    </tr>
+    <tr>
+        <td>Nhap vao toa do y</td>
+        <td>
+            <input id="toaDoY" TYPE="text">
+        </td>
+    </tr>
+    <tr>
+        <td>chinh mau</td>
+        <td>
+            <input id="chinhMau" TYPE="text">
+        </td>
+    </tr>
+
+</table>
+<button onclick="ketQua()">kiem tra</button>
+<button onclick="reset()"> reset</button>
+
+<script>
+    class Rectangle {
+        width
+        height
+        constructor(width,height) {
+            this.width = width
+            this.height = height
+        }
+        getWidth(){
+            return this.width
+        }
+        setWidth(width){
+            this.width = width
+        }
+        getHeight(){
+            return this.height
+        }
+        setHeight(height){
+            this.height =height
+        }
+        getAreas(){
+            return this.width * this.height
+        }
+        getPerimeter(){
+            return (this.width + this.height) * 2
+        }
+    }
+    // let rect1 = new Rectangle(200,100)
+    function ketQua(){
+        let width = +document.getElementById('chieuDai').value;
+        let height = + document.getElementById('chieuRong').value;
+        let toaDoX = document.getElementById('toaDoX').value;
+        let toaDoY= document.getElementById('toaDoY').value;
+        let rect = new Rectangle(width,height)
+        let area = rect.getAreas()
+        let color = document.getElementById('chinhMau').value;
+        document.getElementById('dienTich').innerText= area
+        let perimeter = rect.getPerimeter()
+        document.getElementById('chuVi').innerText = perimeter
+        let canvas = document.getElementById('myCanvas')
+        let ctx = canvas.getContext('2d')
+        ctx.strokeStyle = color
+        ctx.strokeRect(toaDoX,toaDoY,width,height)
+
+    }
+    function reset(){
+        document.getElementById('chieuDai').value='';
+        document.getElementById('chieuRong').value='';
+        document.getElementById('dienTich').innerHTML= '';
+        document.getElementById('chuVi').innerHTML = '';
+        document.getElementById('toaDoX').value='';
+        document.getElementById('toaDoY').value= '';
+        let canvas = document.getElementById('myCanvas')
+        let ctx = canvas.getContext('2d')
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        console.log(canvas.width,canvas.height )
+
+    }
+</script>
+</body>
+
+</html>
